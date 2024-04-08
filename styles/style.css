@@ -170,6 +170,10 @@ body {
     height: 3px;
     background: linear-gradient(90deg, red, green);
 }
+.hero-icon img{
+    width: 100%;
+    height: auto;
+}
 .heroes-row .hero-block:nth-child(1) .hero-color {
     background: linear-gradient(90deg, #132e69, #3372FF, #132e69);  
 }
