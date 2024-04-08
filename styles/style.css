@@ -44,6 +44,76 @@ body {
     overflow: hidden;
     user-select: none;
 }
+.start-game {
+    position: absolute;
+    z-index: 999;
+    height: 100%;
+    width: 100%;
+    background-image: url("../src/images/ready-match-bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.accept-button-block {
+    height: 250px;
+    aspect-ratio: 3 / 1;
+    background: rgb(37, 37, 37);
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    gap: 15%;
+    background-image: url("../src/images/accept-texture.png");
+    box-shadow: 0px 0px 10px 5px #506a55;
+}
+.upper-accept {
+    color: #c7c7c7;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    padding: 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+.upper-accept .header {
+    padding: 0;
+    margin: 0;
+    font-family: 'Hypatia-Black';
+    font-size: 1.55rem;
+    letter-spacing: 1px;
+    line-height: 1;
+    margin-top: .5rem;
+}
+.upper-accept .subheader {
+    padding: 0;
+    margin: 0;
+    font-family: 'Hypatia-Regular';
+    letter-spacing: 1px;
+    line-height: 1;
+}
+
+.accept-button {
+    font-family: 'Hypatia-Black';
+    text-transform: uppercase;
+    color: #e9e9e9;
+    letter-spacing: 1px;
+    font-size: 2rem;
+    padding: 1rem 4rem .5rem 4rem;
+    background: #385D4C;
+    background: radial-gradient(ellipse at center, #385D4C 0%, #2f4f40 75%, #253e33 100%);
+
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
 .main-wrapper {
     height: 100%;
     width: 100%;
@@ -56,11 +126,22 @@ body {
     position: absolute;
     height: 100%;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
 }
-.background-wrapper img {
+#background-video {
+    background-color: red;
+}
+.background-wrapper img, #background-video, #background-video-source  {
     height: 100%;
     width: 100%;
 }
+#background-video {
+    transform: scaleX(1.1);
+}
+
 .playground-wrapper {
     width: 50%;
     aspect-ratio: 16 / 11;

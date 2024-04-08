@@ -10,8 +10,25 @@
 </head>
 <body>
     <div class="main-wrapper">
-        <div class="background-wrapper"><img src="src/images/dota2background.jpg"></div>
-        <div class="game-paused"><span>Game is paused</span></div>
+        <div class="start-game">
+            <div class="accept-button-block">
+                <div class="upper-accept">
+                    <p class="subheader">Your game is ready</p>
+                    <p class="header">All pick</p>
+                </div>
+                <div class="accept-button">
+                    Accept
+                </div>
+                </div>
+        </div>
+        <div class="background-wrapper">
+            <video id="background-video" autoplay loop>
+            <source id="background-video-source" src="src/videos/background-dota-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video></div>
+        <div class="game-paused">
+            <span>Game is paused</span>
+        </div>
         <div class="playground-wrapper">
             <div class="upper-playground">
                 <img src="src/images/playgroundlogo.png">
@@ -114,6 +131,15 @@
         let meepoAppearingInterval;
         let heroSlot = document.querySelectorAll('.hero-icon');
         let randomHero;
+        let gamePauseBanner = document.querySelector(".game-paused");
+        let playground = document.querySelector(".playground-wrapper");
+        let backgroundVideo = document.getElementById("background-video");
+        let startBlock = document.querySelector(".start-game");
+        let startBtn = document.querySelector(".accept-button");
+        backgroundVideo.pause();
+
+        gamePauseBanner.style.display = "none";
+        playground.style.display = "none";
         // let intMep = document.getElementById("intMep");
         let meepoHittableCell = [];
         let meepoSounds =[
@@ -275,7 +301,7 @@
                 meepoCell[i].style.animation = "meepoRotate 2s linear infinite";
             }
         }
-        rotateMeepo();
+        
 
         function stopRotatingMeepo() {
             for (let i = 0; i < meepoCell.length; i++) {
@@ -337,10 +363,47 @@
         }
 
         // Call this function to initialize Meepo cells with click event listeners
-        initializeMeepoCells();
+       
 
-        setTimeout(stopRotatingMeepo, 5000);
-        spawnHeroes();
+        function startHittingMeepo() {
+            startBlock.style.display = "none";
+            backgroundVideo.play();
+        }
+
+        function playMeepo() {
+            initializeMeepoCells();
+            rotateMeepo();
+            setTimeout(stopRotatingMeepo, 5000);
+            spawnHeroes();
+        }
+
+
+        startBtn.addEventListener('click', startHittingMeepo);
+        function pauseGame() {
+            
+        }
+
+        document.addEventListener('keydown', function(event) {
+        if (event.key === 'F9') {
+            gamePauseBanner.style.display = "block";
+            playground.style.display = "block";
+            backgroundVideo.pause();
+            backgroundVideo.style.filter = "grayscale(.5)";
+            playMeepo();
+        }
+        });
+
+        document.addEventListener('keydown', function(event) {
+        if (event.key === 'F10') {
+            gamePauseBanner.style.display = "none";
+            playground.style.display = "none";
+            backgroundVideo.play();
+            backgroundVideo.style.filter = "grayscale(0)";
+            clearInterval(meepoAppearingInterval);
+            meepoIntervalSpeed = 2000;
+        }
+        });
+
     </script>
 </body>
 </html>
