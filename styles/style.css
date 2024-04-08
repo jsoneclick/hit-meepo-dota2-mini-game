@@ -1,0 +1,211 @@
+@font-face {
+    font-family: 'Hypatia-Regular';
+    src: url('../src/fonts/HypatiaSansPro-Regular.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Hypatia-Semibold';
+    src: url('../src/fonts/HypatiaSansPro-Semibold.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Hypatia-Black';
+    src: url('../src/fonts/HypatiaSansPro-Bold.ttf') format('truetype');
+  }
+
+  .h1, .h2 {
+    padding: 0;
+    margin: 0;
+  }
+
+  .h1 {
+    font-family: 'Hypatia-Black';
+    color: #fff;
+    line-height: 1.5;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    background-image: linear-gradient(90deg, #f1e8c7, #aa8848);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    width: 40%;
+  }
+  .h2 {
+    font-family: 'Hypatia-Semibold';
+    color: #c7c7c7;
+    line-height: 1.2;
+    font-size: 1.2rem;
+  }
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    user-select: none;
+}
+.main-wrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.background-wrapper {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+.background-wrapper img {
+    height: 100%;
+    width: 100%;
+}
+.playground-wrapper {
+    width: 50%;
+    aspect-ratio: 16 / 11;
+    /* background: #000000c3; */
+    background: linear-gradient(180deg, #000000c3 65%, #000000f0 100%);
+    position: absolute;
+    border-top: 3px solid #b78946;
+}
+
+.upper-playground {
+    height: 20%;
+    width: 100%;
+    background:#0000008e;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.upper-playground img {
+    height: 100%;
+    width: auto;
+}
+
+.upper-prose {
+    padding-left: 2rem;
+}
+.hitmeepo-field {
+    height: 80%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.hitmeepo-grid {
+    height: 550px;
+    width: 550px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 25px;
+
+}
+.meepo-cell {
+    height: 65px;
+    aspect-ratio: 1 / 1;
+    
+}
+
+.meepo-cell img {
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+}
+
+@keyframes meepoRotate {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+
+.game-paused {
+    position: absolute;
+    background: #0000008e;
+    border-radius: 5px;
+    padding: 2rem 5.5rem 1.50rem 5.5rem;
+    text-transform: uppercase;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Hypatia-Semibold';
+    color: #fff;
+    font-size: 1.45rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-paused span {
+    line-height: 1.5;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    letter-spacing: 1px;
+}
+.heroes-row {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hero-block {
+    width: 60px;
+    height: 80px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+}
+.score {
+    padding: 5px 15px;
+    background: #0000008e;
+    font-family: 'Hypatia-Black';
+    color: #fff;
+}
+.hero-color {
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, red, green);
+}
+.heroes-row .hero-block:nth-child(1) .hero-color {
+    background: linear-gradient(90deg, #132e69, #3372FF, #132e69);  
+}
+
+.heroes-row .hero-block:nth-child(2) .hero-color {
+    background: linear-gradient(90deg, #30725d, #6DFFD0, #30725d);  
+}
+
+.heroes-row .hero-block:nth-child(3) .hero-color {
+    background: linear-gradient(90deg, #3e023e, #CC06CD, #3e023e);  
+}
+
+.heroes-row .hero-block:nth-child(4) .hero-color {
+    background: linear-gradient(90deg, #5e5f05, #FCFF0D, #5e5f05);   
+}
+
+.heroes-row .hero-block:nth-child(5) .hero-color {
+    background: linear-gradient(90deg, #622c01, #FF7401, #622c01);  
+}
+
+.heroes-row .hero-block:nth-child(6) .hero-color {
+    background: linear-gradient(90deg, #5d364c, #FE94D2, #5d364c);  
+}
+
+.heroes-row .hero-block:nth-child(7) .hero-color {
+    background: linear-gradient(90deg, #484f24, #B4C35A, #484f24);  
+}
+
+.heroes-row .hero-block:nth-child(8) .hero-color {
+    background: linear-gradient(90deg, #2a5d67, #69E5FD, #2a5d67);  
+}
+
+.heroes-row .hero-block:nth-child(9) .hero-color {
+    background: linear-gradient(90deg, #142f26, #008B19, #142f26);  
+}
+
+.heroes-row .hero-block:nth-child(10) .hero-color {
+    background: linear-gradient(90deg, #3e2901, #AB6F00, #3e2901);  
+}
