@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link rel="stylesheet" type="text/css" href="./node_modules/dota2-minimap-hero-sprites/assets/stylesheets/dota2minimapheroes.css">
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="main-wrapper">
+        <div class="background-wrapper"><img src="dota2background.jpg"></div>
+        <div class="game-paused"><span>Game is paused</span></div>
+        <div class="playground-wrapper">
+            <div class="upper-playground">
+                <img src="src/images/playgroundlogo.png">
+                <div class="upper-prose">
+                    <p class="h1">
+                        Тресни Мипо!
+                    </p>
+                    <p class="h2">
+                        Бейте вылезающих Мипо раньше остальных и получайте очки.<br>Побеждает тот, кто первым наберет 10 очков!<i class="d2mh npc_dota_hero_gyrocopter"></i>
+                    </p>
+                    <!-- <p class="h2" id="intMep">1000</p> -->
+                    <p class="h2" id="score">0</p>
+                </div>
+            
+            </div>
+            <div class="hitmeepo-field">
+                <div class="hitmeepo-grid">
+                    <div class="meepo-cell"><img src="src/images/meepoicon.png"></div>
+                    <div class="meepo-cell"><img src="src/images/meepoicon.png"></div>
+                    <div class="meepo-cell"><img src="src/images/meepoicon.png"></div>
+                    <div class="meepo-cell"><img src="src/images/meepoicon.png"></div>
+
+                    <div class="meepo-cell"><img src="src/images/meepoicon.png"></div>
+                    <div class="meepo-cell"><img src="src/images/meepoicon.png"></div>
+                    <div class="meepo-cell"><img src="src/images/meepoicon.png"></div>
+                    <div class="meepo-cell"><img src="src/images/meepoicon.png"></div>
+
+                    <div class="meepo-cell"><img src="src/images/meepoicon.png"></div>
+                    <div class="meepo-cell"><img src="src/images/meepoicon.png"></div>
+                    <div class="meepo-cell"><img src="src/images/meepoicon.png"></div>
+                    <div class="meepo-cell"><img src="src/images/meepoicon.png"></div>
+
+                    <div class="meepo-cell"><img src="src/images/meepoicon.png"></div>
+                    <div class="meepo-cell"><img src="src/images/meepoicon.png"></div>
+                    <div class="meepo-cell"><img src="src/images/meepoicon.png"></div>
+                    <div class="meepo-cell"><img src="src/images/meepoicon.png"></div>
+
+                </div>
+                <div class="heroes-row">
+                    <div class="hero-block">
+                        <div class="score">0</div>
+                        <div class="hero-color"></div>
+                        <div class="hero-icon"></div>
+                    </div>
+                    <div class="hero-block">
+                        <div class="score">0</div>
+                        <div class="hero-color"></div>
+                        <div class="hero-icon"></div>
+                    </div>
+                    <div class="hero-block">
+                        <div class="score">0</div>
+                        <div class="hero-color"></div>
+                        <div class="hero-icon"></div>
+                    </div>
+                    <div class="hero-block">
+                        <div class="score">0</div>
+                        <div class="hero-color"></div>
+                        <div class="hero-icon"></div>
+                    </div>
+                    <div class="hero-block">
+                        <div class="score">0</div>
+                        <div class="hero-color"></div>
+                        <div class="hero-icon"></div>
+                    </div>
+                    <div class="hero-block">
+                        <div class="score">0</div>
+                        <div class="hero-color"></div>
+                        <div class="hero-icon"></div>
+                    </div>
+                    <div class="hero-block">
+                        <div class="score">0</div>
+                        <div class="hero-color"></div>
+                        <div class="hero-icon"></div>
+                    </div>
+                    <div class="hero-block">
+                        <div class="score">0</div>
+                        <div class="hero-color"></div>
+                        <div class="hero-icon"></div>
+                    </div>
+                    <div class="hero-block">
+                        <div class="score">0</div>
+                        <div class="hero-color"></div>
+                        <div class="hero-icon"></div>
+                    </div>
+                    <div class="hero-block">
+                        <div class="score">0</div>
+                        <div class="hero-color"></div>
+                        <div class="hero-icon"></div>
+                    </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <script>
+        let meepoCell = document.querySelectorAll('.meepo-cell');
+        let meepoCellImage = document.querySelectorAll('.meepo-cell img');
+        let randomMeepoIndex;
+        let meepoIntervalSpeed = 2000;
+        let meepoAppearingInterval;
+        // let intMep = document.getElementById("intMep");
+        let meepoHittableCell = [];
+        let meepoSounds =[
+            'src/sfx/Meepo-Sounds/meeposound1.mp3',
+            'src/sfx/Meepo-Sounds/meeposound2.mp3',
+            'src/sfx/Meepo-Sounds/meeposound3.mp3',
+            'src/sfx/Meepo-Sounds/meeposound4.mp3',
+            'src/sfx/Meepo-Sounds/meeposound5.mp3',
+            'src/sfx/Meepo-Sounds/meeposound6.mp3'
+        ];
+        let hitSounds =[
+            'src/sfx/Hit-Sounds/attack1.mp3.mpeg',
+            'src/sfx/Hit-Sounds/attack2.mp3.mpeg',
+            'src/sfx/Hit-Sounds/attack3.mp3.mpeg'
+        ];
+        let score = 0;
+        let scoreElement = document.getElementById("score");
+
+        // intMep.innerText = meepoIntervalSpeed;
+
+        function rotateMeepo() {
+            for (let i = 0; i < meepoCell.length; i++) {
+                meepoCell[i].style.animation = "meepoRotate 2s linear infinite";
+            }
+        }
+        rotateMeepo();
+
+        function stopRotatingMeepo() {
+            for (let i = 0; i < meepoCell.length; i++) {
+                meepoCell[i].style.animation = "none";
+                meepoCell[i].style.transform = "rotate(0deg)";
+                meepoCellImage[i].style.display = "none";
+            }
+            startAppearingMeepo();
+        }
+
+        function startAppearingMeepo() {
+            let meepoSound = new Audio();
+            meepoSound.pause();
+            if(meepoIntervalSpeed >= 1){
+                randomMeepoIndex = Math.floor(Math.random() * 16);
+                for (let i = 0; i < meepoCell.length; i++) {
+                    meepoCellImage[i].style.display = "none";
+                    meepoHittableCell[i] = false;
+                }
+
+                const randomMeepoSound = Math.floor(Math.random() * meepoSounds.length);
+                meepoSound = new Audio(meepoSounds[randomMeepoSound]);
+                meepoSound.volume = 0.5;
+                meepoSound.play();
+
+                meepoCellImage[randomMeepoIndex].style.display = "block";
+                meepoHittableCell[randomMeepoIndex] = true;
+                meepoIntervalSpeed -= meepoIntervalSpeed * 0.05;
+                clearInterval(meepoAppearingInterval);
+                // intMep.innerText = meepoIntervalSpeed;
+                meepoAppearingInterval = setInterval(startAppearingMeepo, meepoIntervalSpeed);
+
+            } else {
+                clearInterval(meepoAppearingInterval);
+                meepoAppearingInterval = 2000;
+                meepoAppearingInterval = setInterval(startAppearingMeepo, meepoIntervalSpeed);
+            }   
+        }
+
+        function initializeMeepoCells() {
+            for (let i = 0; i < meepoCell.length; i++) {
+                meepoCell[i].addEventListener('click', function() {
+                    if (meepoHittableCell[i]) {
+                        meepoCellImage[i].style.display = "none";
+                        score++;
+                        scoreElement.innerText = score;
+                        playRandomHitSound();
+                        startAppearingMeepo();
+                    }
+                });
+            }
+        }
+
+        function playRandomHitSound() {
+            const randomHitSound = Math.floor(Math.random() * hitSounds.length);
+            let hitSound = new Audio(hitSounds[randomHitSound]);
+            hitSound.volume = 0.25;
+            hitSound.play();
+        }
+
+        // Call this function to initialize Meepo cells with click event listeners
+        initializeMeepoCells();
+
+        setTimeout(stopRotatingMeepo, 5000);
+    </script>
+</body>
+</html>
